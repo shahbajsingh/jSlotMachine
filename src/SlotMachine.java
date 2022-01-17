@@ -53,33 +53,34 @@ public class SlotMachine
 
         // BET INPUT AND CONFIRMATION
 
-        boolean betConfirmLoop = true;
-        while(betConfirmLoop = true)
-        {
+//        boolean betConfirmLoop = true;
+//        while(betConfirmLoop = true)
+//        {
             System.out.println("Place your bet: "
                                 + "\n$1"
                                 + "\n$2"
                                 + "\n$3"
                                 + "\n$4"
                                 + "\n$5");
-            bet = betInitial = input.nextInt();
+            betInitial = input.nextInt();
+            bet = betInitial;
 
-            System.out.println("You are betting $" + bet + ". Confirm?");
-            char confirmBet = input.next().charAt(0);
-
-            switch(confirmBet)
-            {
-                case 'Y':
-                case 'y':
-                    currentTotal = bet;
-                    betConfirmLoop = false;
-                    break;
-                default:
-                    betConfirmLoop = true;
-                    break;
-            }
-
-        }
+            System.out.println("You are betting $" + bet + ".");
+//            char confirmBet = input.next().charAt(0);
+//
+//            switch(confirmBet)
+//            {
+//                case 'Y':
+//                case 'y':
+//                    currentTotal = bet;
+//                    betConfirmLoop = false;
+//                    break;
+//                default:
+//                    betConfirmLoop = true;
+//                    break;
+//            }
+//
+//        }
 
         currentTotal = bet;
 
@@ -105,9 +106,120 @@ public class SlotMachine
 
             // SLOT 1
 
-            int output1 = rand.nextInt();
+            int output1 = rand.nextInt(6);
+            slot1 = output1;
+
+            if(output1 == 0)
+            {
+                System.out.println("| CHERRIES |");
+            } else if(output1 == 1) {
+                System.out.println("| ORANGES |");
+            } else if(output1 == 2) {
+                System.out.println("| PLUMS |");
+            } else if(output1 == 3) {
+                System.out.println("| BELLS |");
+            } else if(output1 == 4) {
+                System.out.println("| MELONS |");
+            } else if(output1 == 5) {
+                System.out.println("| BARS |");
+            }
+
+
+            // SLOT 2
+
+            int output2 = rand.nextInt(6);
+            slot2 = output2;
+
+            if(output2 == 0)
+            {
+                System.out.println("| CHERRIES |");
+            } else if(output2 == 1) {
+                System.out.println("| ORANGES |");
+            } else if(output2 == 2) {
+                System.out.println("| PLUMS |");
+            } else if(output2 == 3) {
+                System.out.println("| BELLS |");
+            } else if(output2 == 4) {
+                System.out.println("| MELONS |");
+            } else if(output2 == 5) {
+                System.out.println("| BARS |");
+            }
+
+
+            // SLOT 3
+
+            int output3 = rand.nextInt(6);
+            slot3 = output3;
+
+            if(output3 == 0)
+            {
+                System.out.println("| CHERRIES |");
+            } else if(output3 == 1) {
+                System.out.println("| ORANGES |");
+            } else if(output3 == 2) {
+                System.out.println("| PLUMS |");
+            } else if(output3 == 3) {
+                System.out.println("| BELLS |");
+            } else if(output3 == 4) {
+                System.out.println("| MELONS |");
+            } else if(output3 == 5) {
+                System.out.println("| BARS |");
+            }
+
+
+            // REWARD STATEMENTS
+
+            while(currentTotal >= 0)
+            {
+
+                if ((slot1 == slot2) && (slot2 == slot3))
+                {
+                    System.out.println("Triple match!");
+                    newTotal = currentTotal * 3;
+                    currentTotal = newTotal;
+                    System.out.println("You have $" + currentTotal);
+                    break;
+                }
+                else if ((slot1 == slot2) || (slot2 == slot3) || (slot1 == slot3))
+                {
+                    System.out.println("Double match!");
+                    newTotal = currentTotal * 2;
+                    currentTotal = newTotal;
+                    System.out.println("You have $" + currentTotal);
+                    break;
+                }
+                else
+                {
+                    System.out.println("You lose!");
+                    System.out.println("You have $1");
+                    newTotal = 1;
+                    currentTotal = newTotal;
+                    break;
+                }
+
+            }
+
+            System.out.println("\t\t\t\t\tPLAY AGAIN?");
+            char playAgainSwitch = input.next().charAt(0);
+
+            switch (playAgainSwitch)
+            {
+                case 'Y':
+                case 'y':
+                    playAgain = true;
+                    break;
+                default:
+                    playAgain = false;
+                    break;
+            }
 
         }
+
+        // EARNINGS OUTPUT
+        System.out.println("You began with $" + betInitial + ".");
+        System.out.println("Your winnings are $" + currentTotal + ".");
+        input.close();
+        System.exit(0);
 
     }
 
