@@ -12,44 +12,16 @@ public class SlotMachine
 
     public static void playGame()
     {
-        int slot1 = 0;
-        int slot2 = 0;
-        int slot3 = 0;
-
-        int betInitial = 0;
-        int bet = 0;
-
-        int currentTotal = 0;
-        int newTotal = 0;
+        Scanner input = new Scanner(System.in);
+        int slot1, slot2, slot3 = 0;
+        int initBet, bet = 0;
+        int currentTotal, newTotal = 0;
 
         boolean playAgain = true;
 
         // INTRODUCTION
 
-        System.out.println("****************************************************************");
-        System.out.println("\t\t\t\t\t\t\tJ SLOTS\t\t\t\t\t\t\t");
-        System.out.println("****************************************************************\n");
-        System.out.println("\t\t\t\t\t\tINSTRUCTIONS?\n\n\t\t\t\t\t\tY\t\t\tN");
-        Scanner input = new Scanner(System.in);
-        char instructionSwitch = input.next().charAt(0);
-
-        // INSTRUCTIONS
-
-        switch(instructionSwitch)
-        {
-            case 'Y':
-            case 'y':
-                printInstructions();
-                break;
-            case 'N':
-            case 'n':
-                System.out.println("Let's get started!");
-                break;
-            default:
-                printInstructions();
-                break;
-        }
-
+        printTitle();
 
         // BET INPUT AND CONFIRMATION
 
@@ -62,8 +34,8 @@ public class SlotMachine
                                 + "\n$3"
                                 + "\n$4"
                                 + "\n$5");
-            betInitial = input.nextInt();
-            bet = betInitial;
+            initBet = input.nextInt();
+            bet = initBet;
 
             System.out.println("You are betting $" + bet + ".");
 //            char confirmBet = input.next().charAt(0);
@@ -216,10 +188,42 @@ public class SlotMachine
         }
 
         // EARNINGS OUTPUT
-        System.out.println("You began with $" + betInitial + ".");
+        System.out.println("You began with $" + initBet + ".");
         System.out.println("Your winnings are $" + currentTotal + ".");
         input.close();
         System.exit(0);
+
+    }
+
+
+
+
+
+    public static void printTitle()
+    {
+        System.out.println("****************************************************************");
+        System.out.println("\t\t\t\t\t\t\tJ SLOTS\t\t\t\t\t\t\t");
+        System.out.println("****************************************************************\n");
+        System.out.println("\t\t\t\t\t\tINSTRUCTIONS?\n\n\t\t\t\t\t\tY\t\t\tN");
+        Scanner input = new Scanner(System.in);
+        char instructionSwitch = input.next().charAt(0);
+
+        // INSTRUCTIONS
+
+        switch(instructionSwitch)
+        {
+            case 'Y':
+            case 'y':
+                printInstructions();
+                break;
+            case 'N':
+            case 'n':
+                System.out.println("Let's get started!");
+                break;
+            default:
+                printInstructions();
+                break;
+        }
 
     }
 
@@ -228,7 +232,7 @@ public class SlotMachine
         System.out.println("****************************************************************");
         System.out.println("J Slot Machine is an easy to play, high-risk, high-reward game.");
         System.out.println("\nYou place your initial bet and crank the machine, winning if\n"
-                + "you can get a combo of items.");
+                             + "you can get a combo of items.");
         System.out.println("\nYou have a chance of doubling or even tripling your bet by round!");
         System.out.println("****************************************************************");
 
@@ -238,5 +242,7 @@ public class SlotMachine
         System.out.println("\nRoll over your winnings each round, win all or go bust!");
         System.out.println("****************************************************************");
     }
+
+
 
 }
