@@ -4,20 +4,24 @@ import java.util.Scanner;
 public class SlotMachine
 {
 
+
+
     public static void main(String[] args)
     {
+
         playGame();
     }
 
 
     public static void playGame()
     {
-        Scanner input = new Scanner(System.in);
-        int slot1, slot2, slot3 = 0;
-        int initBet, bet = 0;
-        int currentTotal, newTotal = 0;
+        int slot1, slot2, slot3, initBet, bet, currentTotal, newTotal;
+        slot1 = slot2 = slot3 = initBet = bet = currentTotal = newTotal = 0;
 
         boolean playAgain = true;
+        boolean betConfirmLoop = true;
+        Scanner input = new Scanner(System.in);
+
 
         // INTRODUCTION
 
@@ -25,34 +29,26 @@ public class SlotMachine
 
         // BET INPUT AND CONFIRMATION
 
-//        boolean betConfirmLoop = true;
-//        while(betConfirmLoop = true)
-//        {
-            System.out.println("Place your bet: "
-                                + "\n$1"
-                                + "\n$2"
-                                + "\n$3"
-                                + "\n$4"
-                                + "\n$5");
+        while(betConfirmLoop == true)
+        {
+            System.out.println("Place your bet: $");
             initBet = input.nextInt();
             bet = initBet;
 
-            System.out.println("You are betting $" + bet + ".");
-//            char confirmBet = input.next().charAt(0);
-//
-//            switch(confirmBet)
-//            {
-//                case 'Y':
-//                case 'y':
-//                    currentTotal = bet;
-//                    betConfirmLoop = false;
-//                    break;
-//                default:
-//                    betConfirmLoop = true;
-//                    break;
-//            }
-//
-//        }
+            System.out.println("You are betting $" + bet + ". Confirm?\n");
+            char betSwitch = input.next().charAt(0);
+
+            switch(betSwitch)
+            {
+                case 'Y':
+                case 'y':
+                    betConfirmLoop = false;
+                    break;
+                default:
+                    betConfirmLoop = true;
+                    break;
+            }
+        }
 
         currentTotal = bet;
 
