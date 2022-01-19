@@ -8,30 +8,32 @@ public class SlotMachine
 
     public static void main(String[] args)
     {
-
         playGame();
     }
 
 
     public static void playGame()
     {
+
         int slot1, slot2, slot3, initBet, bet, currentTotal, newTotal;
-        slot1 = slot2 = slot3 = initBet = bet = currentTotal = newTotal = 0;
+        initBet = bet = 0;
 
         boolean playAgain = true;
         boolean betConfirmLoop = true;
+
         Scanner input = new Scanner(System.in);
+        Random rand = new Random();
 
 
-        // INTRODUCTION
 
         printTitle();
 
-        // BET INPUT AND CONFIRMATION
+
+        // PLACE AND CONFIRM BET
 
         while(betConfirmLoop == true)
         {
-            System.out.println("Place your bet: $");
+            System.out.print("\nPlace your bet: $");
             initBet = input.nextInt();
             bet = initBet;
 
@@ -50,87 +52,85 @@ public class SlotMachine
             }
         }
 
-        currentTotal = bet;
+        currentTotal = bet;     // Add bet money to pool
+
 
         // GAME MECHANICS
 
         while(playAgain == true)
         {
-            char crank1 = ' ';
-            while(crank1 != 'X' && crank1 != 'x')
+
+            // TURN CRANK
+
+            char crank = ' ';
+            while(crank != 'X' && crank != 'x')
             {
                 System.out.println("Press X to crank\n");
-                crank1 = input.next().charAt(0);
+                crank = input.next().charAt(0);
+                System.out.println();
             }
 
 
-
             // SLOT OUTPUT
-
-            Random rand = new Random();
-            System.out.println();
 
 
 
             // SLOT 1
 
-            int output1 = rand.nextInt(6);
-            slot1 = output1;
+            slot1 = rand.nextInt(6);
 
-            if(output1 == 0)
+            if(slot1 == 0)
             {
                 System.out.println("| CHERRIES |");
-            } else if(output1 == 1) {
+            } else if(slot1 == 1) {
                 System.out.println("| ORANGES |");
-            } else if(output1 == 2) {
+            } else if(slot1 == 2) {
                 System.out.println("| PLUMS |");
-            } else if(output1 == 3) {
+            } else if(slot1 == 3) {
                 System.out.println("| BELLS |");
-            } else if(output1 == 4) {
+            } else if(slot1 == 4) {
                 System.out.println("| MELONS |");
-            } else if(output1 == 5) {
+            } else if(slot1 == 5) {
                 System.out.println("| BARS |");
             }
 
 
             // SLOT 2
 
-            int output2 = rand.nextInt(6);
-            slot2 = output2;
+            slot2 = rand.nextInt(6);
 
-            if(output2 == 0)
+            if(slot2 == 0)
             {
                 System.out.println("| CHERRIES |");
-            } else if(output2 == 1) {
+            } else if(slot2 == 1) {
                 System.out.println("| ORANGES |");
-            } else if(output2 == 2) {
+            } else if(slot2 == 2) {
                 System.out.println("| PLUMS |");
-            } else if(output2 == 3) {
+            } else if(slot2 == 3) {
                 System.out.println("| BELLS |");
-            } else if(output2 == 4) {
+            } else if(slot2 == 4) {
                 System.out.println("| MELONS |");
-            } else if(output2 == 5) {
+            } else if(slot2 == 5) {
                 System.out.println("| BARS |");
             }
 
 
             // SLOT 3
 
-            int output3 = rand.nextInt(6);
-            slot3 = output3;
+            slot3 = rand.nextInt(6);
 
-            if(output3 == 0)
+            if(slot3 == 0)
             {
                 System.out.println("| CHERRIES |");
-            } else if(output3 == 1) {
+            } else if(slot3 == 1) {
                 System.out.println("| ORANGES |");
-            } else if(output3 == 2) {
+            } else if(slot3 == 2) {
                 System.out.println("| PLUMS |");
-            } else if(output3 == 3) {
+            } else if(slot3 == 3) {
                 System.out.println("| BELLS |");
-            } else if(output3 == 4) {
+            } else if(slot3 == 4) {
                 System.out.println("| MELONS |");
-            } else if(output3 == 5) {
+            } else if(slot3 == 5) {
                 System.out.println("| BARS |");
             }
 
@@ -185,11 +185,17 @@ public class SlotMachine
 
         // EARNINGS OUTPUT
         System.out.println("You began with $" + initBet + ".");
-        System.out.println("Your winnings are $" + currentTotal + ".");
+        System.out.println("Your left with $" + currentTotal + ".");
+        if(currentTotal >= initBet)
+            System.out.println("Your total winnings are $" + (currentTotal - initBet) + "!");
+        else
+            System.out.println("You lost $" + (initBet - currentTotal) + ". Better luck next time!");
         input.close();
         System.exit(0);
 
     }
+
+
 
 
 
@@ -223,6 +229,10 @@ public class SlotMachine
 
     }
 
+
+
+
+
     public static void printInstructions()
     {
         System.out.println("****************************************************************");
@@ -236,6 +246,10 @@ public class SlotMachine
         System.out.println("\nMatch two (2) slots and double your bet!");
         System.out.println("\nMatch three (3) slots and triple your bet!");
         System.out.println("\nRoll over your winnings each round, win all or go bust!");
+        System.out.println("****************************************************************");
+        System.out.println("\t\t\t\t\t\tLIMITED TIME OFFER");
+        System.out.println("\nThe casino is offering a $1 rebate if you lose, so you can\n"
+                            + "keep playing!");
         System.out.println("****************************************************************");
     }
 
